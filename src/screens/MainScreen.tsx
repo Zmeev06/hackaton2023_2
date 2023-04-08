@@ -4,10 +4,10 @@ import {
   StatusBar,
   StyleSheet,
   Text,
-  TouchableOpacity,
+  ScrollView,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React from 'react';
 import {MainScreenProps} from '../interfaces/propsinterfaces';
 import game1 from '../assets/img/MainScreenImgs/game1.png';
 import game2 from '../assets/img/MainScreenImgs/game2.png';
@@ -22,80 +22,86 @@ import {font} from '../variables/font';
 import Logo from '../assets/img/logo.png';
 import HeaderMainScreen from '../components/HeaderMainScreen';
 import {colors} from '../variables/colors';
-import {getDeviceSizes} from '../utils/getDeviceSizes';
 import LinearGradient from 'react-native-linear-gradient';
 
+import {ParamListBase, useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import SquareCard from '../components/UI/SquareCard';
+
 const MainScreen: React.FC<MainScreenProps> = ({}) => {
-  const [subjects, setSubjects] = useState([
-    {img: game1, title: 'Математика', colorGradient: ['#99E087', '#C9FFBB']},
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
+
+  const subjects = [
+    {
+      img: game1,
+      title: 'Математика',
+      colorGradient: [colors.green_dark, colors.green_light],
+      onPress: () => navigation.navigate('MathGame'),
+    },
     {img: game2, title: 'Алфавит', colorGradient: ['#9CADEB', '#FCD9E6']},
-  ]);
-  const [subjects2, setSubjects2] = useState([
+  ];
+
+  const subjects2 = [
     {img: game5, title: 'Английский', colorGradient: ['#dce485', '#F8FFA9']},
     {img: game6, title: 'Логика', colorGradient: ['#AB9CE4', '#DFD7FF']},
-  ]);
-
-  const device = getDeviceSizes();
-
-  const halfDevice = device.width / 2 - 15;
-
-  const halfCardSizes = {
-    width: halfDevice,
-    height: halfDevice,
-  };
+  ];
 
   return (
     <SafeAreaView style={globalStyles.safeAreaView}>
       <StatusBar barStyle={'dark-content'} backgroundColor={colors.bg} />
       <View style={styles.container}>
-        <View style={styles.titleContainer}>
-          <Image style={{height: 25, width: 25}} source={Logo} />
-          <Text style={styles.title}>Умняшка</Text>
-        </View>
-        <HeaderMainScreen />
-        <View style={styles.content}>
-          {subjects.map((item, index) => (
-            <SubjectHorizontal
-              img={item.img}
-              title={item.title}
-              colorGradient={item.colorGradient}
-              key={index}
-            />
-          ))}
-
-          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-            <TouchableOpacity style={[styles.halfCard, halfCardSizes]}>
-              <LinearGradient
-                colors={['#2C9F7D', '#76E2C2']}
-                style={{width: '100%', height: '100%'}}
-                start={{x: 0.6, y: 0}}>
-                <Image source={game3} style={styles.imageFirstHalfCard} />
-                <Text style={styles.textFirstHalfCard}>Музыка</Text>
-              </LinearGradient>
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.halfCard, halfCardSizes]}>
-              <LinearGradient
-                colors={['#C74646', '#E27676']}
-                style={{width: '100%', height: '100%'}}
-                start={{x: 0.6, y: 0}}>
-                <Image
-                  source={game4}
-                  style={styles.imageSecondHalfCard}
-                  resizeMode="contain"
-                />
-                <Text style={styles.textSecondHalfCard}>Грамота</Text>
-              </LinearGradient>
-            </TouchableOpacity>
+        <ScrollView>
+          <View style={styles.titleContainer}>
+            <Image style={{height: 25, width: 25}} source={Logo} />
+            <Text style={styles.title}>Умняшка</Text>
           </View>
-          {subjects2.map((item, index) => (
-            <SubjectHorizontal
-              img={item.img}
-              title={item.title}
-              colorGradient={item.colorGradient}
-              key={index}
-            />
-          ))}
-        </View>
+          <HeaderMainScreen />
+          <View style={styles.content}>
+            {subjects.map((item, index) => (
+              <SubjectHorizontal
+                img={item.img}
+                title={item.title}
+                colorGradient={item.colorGradient}
+                key={index}
+                onPress={item.onPress}
+              />
+            ))}
+
+            <View
+              style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+              <SquareCard onPress={() => {}}>
+                <LinearGradient
+                  colors={['#2C9F7D', '#76E2C2']}
+                  style={{width: '100%', height: '100%'}}
+                  start={{x: 0.6, y: 0}}>
+                  <Image source={game3} style={styles.imageFirstHalfCard} />
+                  <Text style={styles.textFirstHalfCard}>Музыка</Text>
+                </LinearGradient>
+              </SquareCard>
+              <SquareCard onPress={() => {}}>
+                <LinearGradient
+                  colors={['#C74646', '#E27676']}
+                  style={{width: '100%', height: '100%'}}
+                  start={{x: 0.6, y: 0}}>
+                  <Image
+                    source={game4}
+                    style={styles.imageSecondHalfCard}
+                    resizeMode="contain"
+                  />
+                  <Text style={styles.textSecondHalfCard}>Грамота</Text>
+                </LinearGradient>
+              </SquareCard>
+            </View>
+            {subjects2.map((item, index) => (
+              <SubjectHorizontal
+                img={item.img}
+                title={item.title}
+                colorGradient={item.colorGradient}
+                key={index}
+              />
+            ))}
+          </View>
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
@@ -139,11 +145,6 @@ const styles = StyleSheet.create({
   horizontalSubjects: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-  },
-  halfCard: {
-    borderRadius: 20,
-    overflow: 'hidden',
-    marginBottom: 10,
   },
   textFirstHalfCard: {
     color: '#fff',

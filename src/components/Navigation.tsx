@@ -2,9 +2,13 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import MainScreen from '../screens/MainScreen';
+import MathGame from '../screens/MathGame';
+import Difficult from '../screens/Difficult';
+import CalcScreen from '../screens/CalcScreen';
+import {RootStackParamList} from '../interfaces/propsinterfaces';
 
 const Navigation: React.FC = () => {
-  const Stack = createNativeStackNavigator();
+  const Stack = createNativeStackNavigator<RootStackParamList>();
 
   return (
     <NavigationContainer>
@@ -14,7 +18,21 @@ const Navigation: React.FC = () => {
           component={MainScreen}
           options={{headerShown: false}}
         />
-        {/* <Stack.Screen name="CalcGame" component={StartGameScreen} /> */}
+        <Stack.Screen
+          name="MathGame"
+          component={MathGame}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Difficult"
+          component={Difficult}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="CalcScreen"
+          component={CalcScreen}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

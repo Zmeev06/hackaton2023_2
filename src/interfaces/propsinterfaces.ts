@@ -1,3 +1,5 @@
+import {Difficult} from '../Types';
+
 export interface MainScreenProps {}
 
 export interface miniContainerProps {
@@ -9,8 +11,12 @@ export interface miniContainerProps {
 export interface SubjectHorizontalProps {
   img: any;
   title: string;
-  pressHandler?: () => void;
+  onPress?: () => void;
   colorGradient: [string, string];
+  reverse?: boolean;
+  imgStyle?: {
+    [key: string]: string | number;
+  };
 }
 
 export interface StartGameProps {
@@ -20,3 +26,10 @@ export interface StartGameProps {
   text: string;
   sound: any;
 }
+
+export type RootStackParamList = {
+  Home: undefined;
+  MathGame: undefined;
+  Difficult: {type: string} | undefined;
+  CalcScreen: {type: string; diff: Difficult};
+};
