@@ -38,7 +38,7 @@ const MainScreen: React.FC<MainScreenProps> = ({}) => {
       colorGradient: [colors.green_dark, colors.green_light],
       onPress: () => navigation.navigate('MathGame'),
     },
-    {img: game2, title: 'Алфавит', colorGradient: ['#9CADEB', '#FCD9E6']},
+    {img: game2, title: 'Алфавит', colorGradient: ['#9CADEB', '#FCD9E6'], onPress: () => navigation.navigate('AlphabetMain')},
   ];
 
   const subjects2 = [
