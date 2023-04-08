@@ -30,6 +30,7 @@ export interface StartGameProps {
 export type RootStackParamList = {
   Home: undefined;
   MathGame: undefined;
+  WhatIsNumber: undefined;
   Difficult: {type: string} | undefined;
   CalcScreen: {type: Operations; diff: Difficult};
 };

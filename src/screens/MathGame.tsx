@@ -10,8 +10,6 @@ import {
 import React from 'react';
 import SoundImage from '../assets/img/SVG/Sound';
 import SquareCard from '../components/UI/SquareCard';
-// import useSound from 'react-native-use-sound';
-// import SoundText from '../assets/rabbit.mp3';
 
 import PlusImage from '../assets/img/operators/plus.png';
 import MinusImage from '../assets/img/operators/minus.png';
@@ -25,17 +23,19 @@ import {globalStyles} from '../globalStyles';
 import GameImage from '../assets/img/rabbit.png';
 import NumsImage from '../assets/img/nums.png';
 
+import SoundFile from '../assets/sounds/rabbit.mp3';
 import Sound from 'react-native-sound';
 Sound.setCategory('Playback');
 let sound = new Sound(SoundFile);
 
-import SoundFile from '../assets/sounds/rabbit.mp3';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useNavigationState} from '@react-navigation/native';
 
 const MathGame: React.FC = () => {
   const [isPlaing, setIsPlaing] = React.useState(false);
 
   const navigation = useNavigation();
+
+  const state = useNavigationState(state => state);
 
   React.useEffect(() => {
     setIsPlaing(true);
@@ -44,6 +44,11 @@ const MathGame: React.FC = () => {
       sound.release();
     };
   }, []);
+
+  React.useEffect(() => {
+    setIsPlaing(false);
+    sound.release();
+  }, [state]);
 
   const handlePlaySound = () => {
     if (!isPlaing) {
@@ -118,7 +123,9 @@ const MathGame: React.FC = () => {
               </View>
             </SquareCard>
           </View>
-          <View style={styles.bottomBtn}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('WhatIsNumber')}
+            style={styles.bottomBtn}>
             <Image
               source={NumsImage}
               style={{height: '90%', width: 100}}
@@ -127,7 +134,7 @@ const MathGame: React.FC = () => {
             <Text style={[styles.gameTitle, {paddingTop: 0}]}>
               Что за цифра?
             </Text>
-          </View>
+          </TouchableOpacity>
           <View style={styles.bottomContainer}>
             <TouchableOpacity
               onPress={() => {
@@ -203,7 +210,7 @@ const styles = StyleSheet.create({
     flex: 1,
     position: 'relative',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     // alignItems: 'flex-end',
     paddingBottom: 20,
   },

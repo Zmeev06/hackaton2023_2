@@ -1,16 +1,8 @@
 import React from 'react';
-import {
-  TouchableOpacity,
-  Text,
-  StyleSheet,
-  View,
-  Image,
-  StatusBar,
-} from 'react-native';
+import {TouchableOpacity, Text, StyleSheet, View, Image} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {globalStyles} from '../globalStyles';
 import {useNavigation} from '@react-navigation/native';
-import ReactNativeModal from 'react-native-modal';
 import Header from '../components/Header';
 import {colors} from '../variables/colors';
 import {font} from '../variables/font';
@@ -18,7 +10,7 @@ import {getExpressionData} from '../utils/getExpressionData';
 import {MATH_EXPRESSIONS} from '../data/expressions';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../interfaces/propsinterfaces';
-import {randomSortStrings} from '../utils/randomSort';
+import {randomSort, randomSortStrings} from '../utils/randomSort';
 import {getOperatorImage} from '../utils/getOperator';
 import {getNumber} from '../utils/getNumber';
 
@@ -28,15 +20,13 @@ import QuestionOperatorImage from '../assets/img/operators/question.png';
 
 import GoodImage from '../assets/img/good.png';
 import BadImage from '../assets/img/bad.png';
-import {getDeviceSizes} from '../utils/getDeviceSizes';
 import Sound from 'react-native-sound';
 
 import GoodSound from '../assets/sounds/like1.mp3';
 import CustomModal from '../components/UI/CustomModal';
+import {numbers, string_numbers} from '../data/static';
 
-const CalcScreen: React.FC<
-  NativeStackScreenProps<RootStackParamList, 'CalcScreen'>
-> = ({route}) => {
+const WhatIsNumber: React.FC = () => {
   const navigation = useNavigation();
 
   React.useEffect(() => {}, []);
@@ -46,34 +36,33 @@ const CalcScreen: React.FC<
 
   const [modalIsVisible, setModalIsVisible] = React.useState(false);
 
-  const {type, diff} = route.params;
-
-  const exp = randomSortStrings(MATH_EXPRESSIONS[type][diff])[0];
-  const {answers, num_1, num_2, res} = React.useMemo(
-    () => getExpressionData(exp, type),
-    [],
-  );
-
-  const OperatoImage = getOperatorImage(type);
-
   React.useEffect(() => {
-    console.log('USE EFFECT');
-    console.log(isBad, isGood);
     if ((isBad || isGood) && !modalIsVisible) {
       setModalIsVisible(true);
     }
   }, [isBad, isGood]);
 
-  const answerImages = answers.map(num => ({
-    element: <NumImage num={num} answer={true} />,
-    num,
-  }));
+  const [randomNum, setRandomNum] = React.useState(randomSort(numbers)[0]);
+
+  const randomNumIndex = numbers.findIndex(item => item === randomNum);
+  const arrayWithoutNum = numbers.filter(item => item !== randomNum);
+  const answers = React.useMemo(
+    () =>
+      randomSort([
+        randomSort(arrayWithoutNum)[0],
+        randomSort(arrayWithoutNum)[0],
+        randomNum,
+      ]),
+    [randomNum],
+  );
+
+  console.log(answers);
 
   async function sendAnswer(answer: number) {
     'SEND ANSWER';
     //@ts-ignore
     // whoosh.play();
-    if (answer === res) {
+    if (answer === randomNum) {
       const whoosh = new Sound(GoodSound, () => whoosh.play());
       setIsGood(true);
     } else {
@@ -82,7 +71,6 @@ const CalcScreen: React.FC<
   }
 
   function handleCloseModal() {
-    console.log('HANDLE');
     if (isBad) {
       setModalIsVisible(false);
       setTimeout(() => {
@@ -93,34 +81,39 @@ const CalcScreen: React.FC<
       setTimeout(() => {
         setIsGood(false);
       }, 500);
-      isGood && navigation.navigate('MathGame');
+      setRandomNum(randomSort(numbers)[0]);
+      // isGood && navigation.navigate('MathGame');
     }
   }
 
   return (
     <SafeAreaView style={globalStyles.safeAreaView}>
-      <Header title="Посчитай" color={colors.green_dark} />
+      <Header title="Что за цифра?" color={colors.green_dark} />
       <View style={[globalStyles.container, {marginTop: 20, flex: 1}]}>
         <View style={styles.commonTopContainer}>
-          <View style={styles.expContainer}>
-            <NumImage num={num_1} />
-            <Image style={[styles.operatorImage]} source={OperatoImage} />
-            <NumImage num={num_2} />
-            <Image
-              style={[styles.operatorImage, {maxWidth: 44}]}
-              source={EqulasImage}
-            />
-            <Image style={[styles.image]} source={QuestionOperatorImage} />
+          <View
+            style={[
+              styles.expContainer,
+              {justifyContent: 'center', alignItems: 'center', flex: 1},
+            ]}>
+            <NumImage num={randomNum} />
           </View>
-          <Image style={styles.questionImage} source={QuestionImage} />
         </View>
         <View style={styles.expContainer}>
-          {answerImages.map((item, index) => (
+          {answers.map((item, index) => (
             <TouchableOpacity
               key={index}
-              onPress={() => sendAnswer(item.num)}
+              onPress={() => sendAnswer(item)}
               style={styles.answerBtn}>
-              {item.element}
+              <Text
+                style={{
+                  fontFamily: font.black,
+                  fontSize: 18,
+                  textTransform: 'uppercase',
+                  color: '#000',
+                }}>
+                {string_numbers[item]}
+              </Text>
             </TouchableOpacity>
           ))}
         </View>
@@ -221,8 +214,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   image: {
-    maxHeight: 60,
-    maxWidth: 43,
+    maxHeight: 140,
+    maxWidth: 100,
     resizeMode: 'contain',
   },
   answerImage: {
@@ -245,8 +238,8 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     justifyContent: 'center',
     alignItems: 'center',
-    flex: 1,
     marginHorizontal: 5,
+    marginBottom: 10,
   },
   operatorImage: {
     maxHeight: 30,
@@ -258,11 +251,9 @@ const styles = StyleSheet.create({
   },
   expContainer: {
     paddingTop: 20,
-    flexDirection: 'row',
     justifyContent: 'space-around',
-    alignItems: 'center',
     marginBottom: 20,
   },
 });
 
-export default CalcScreen;
+export default WhatIsNumber;
