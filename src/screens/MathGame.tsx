@@ -25,30 +25,36 @@ import {globalStyles} from '../globalStyles';
 import GameImage from '../assets/img/rabbit.png';
 import NumsImage from '../assets/img/nums.png';
 
-import SoundFile from '../assets/rabbit.mp3';
-import useSound from 'react-native-use-sound';
-import {useNavigation} from '@react-navigation/native';
+import Sound from 'react-native-sound';
+Sound.setCategory('Playback');
+let sound = new Sound(SoundFile);
 
-// import Sound from 'react-native-sound';
-// Sound.setCategory('Playback');
+import SoundFile from '../assets/sounds/rabbit.mp3';
+import {useNavigation} from '@react-navigation/native';
 
 const MathGame: React.FC = () => {
   const [isPlaing, setIsPlaing] = React.useState(false);
-  const [play, pause, stop, data] = useSound('../assets/rabbit.mp3');
 
   const navigation = useNavigation();
 
   React.useEffect(() => {
     setIsPlaing(true);
-    play();
+    sound.play(() => setIsPlaing(false));
     return () => {
-      // whoosh.release();
+      sound.release();
     };
   }, []);
 
-  const handlePlay = () => {
-    if (data.isPlaying) pause();
-    else play();
+  const handlePlaySound = () => {
+    if (!isPlaing) {
+      sound = new Sound(SoundFile, () =>
+        sound.play(() => {
+          setIsPlaing(false);
+          console.log('STOPPED');
+        }),
+      );
+    }
+    setIsPlaing(true);
   };
 
   return (
@@ -69,7 +75,10 @@ const MathGame: React.FC = () => {
                 <Text style={styles.gameTitle}>Сложение</Text>
               </View>
             </SquareCard>
-            <SquareCard>
+            <SquareCard
+              onPress={() =>
+                navigation.navigate('Difficult', {type: 'multiple'})
+              }>
               <View
                 style={[styles.cardContainer, {backgroundColor: '#ffe9c0'}]}>
                 <Image
@@ -82,7 +91,8 @@ const MathGame: React.FC = () => {
             </SquareCard>
           </View>
           <View style={styles.row}>
-            <SquareCard>
+            <SquareCard
+              onPress={() => navigation.navigate('Difficult', {type: 'minus'})}>
               <View
                 style={[styles.cardContainer, {backgroundColor: '#daf3ff'}]}>
                 <Image
@@ -93,7 +103,10 @@ const MathGame: React.FC = () => {
                 <Text style={styles.gameTitle}>Вычитание</Text>
               </View>
             </SquareCard>
-            <SquareCard>
+            <SquareCard
+              onPress={() =>
+                navigation.navigate('Difficult', {type: 'devide'})
+              }>
               <View
                 style={[styles.cardContainer, {backgroundColor: '#c9ffcb'}]}>
                 <Image
@@ -118,8 +131,7 @@ const MathGame: React.FC = () => {
           <View style={styles.bottomContainer}>
             <TouchableOpacity
               onPress={() => {
-                console.log(data);
-                handlePlay();
+                handlePlaySound();
               }}
               style={styles.soundBtn}>
               <SoundImage />
