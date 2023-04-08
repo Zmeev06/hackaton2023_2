@@ -12,6 +12,8 @@ import {StartGameProps} from '../interfaces/propsinterfaces';
 import gameImg from '../assets/img/rabbit.png';
 import message from '../assets/img/message.png';
 import Sound from '../assets/img/SVG/Sound';
+import useSound from 'react-native-use-sound';
+import SoundText from '../assets/rabbit.mp3';
 
 const StartGameScreen: React.FC<StartGameProps> = ({
   img,
@@ -20,6 +22,8 @@ const StartGameScreen: React.FC<StartGameProps> = ({
   text,
   sound,
 }) => {
+  const [play, pause, stop, data] = useSound(SoundText);
+
   return (
     <SafeAreaView style={styles.mainContainer}>
       <View style={styles.container}>
@@ -58,7 +62,7 @@ const StartGameScreen: React.FC<StartGameProps> = ({
             Умею считать до 20. Мне сказали, что ты сможешь решить мои самые
             сложные примеры. Давай проверим это!
           </Text>
-          <TouchableOpacity style={styles.gameImgElips}>
+          <TouchableOpacity style={styles.gameImgElips} onPress={() =>play()}>
             <Sound />
           </TouchableOpacity>
           <Image style={styles.gameImg} source={gameImg} />
