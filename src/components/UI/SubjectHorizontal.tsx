@@ -24,12 +24,12 @@ const SubjectHorizontal: React.FC<SubjectHorizontalProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 5,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 23,
     borderRadius: 20,
+    marginBottom: 10,
   },
   title: {
     fontWeight: '900',
