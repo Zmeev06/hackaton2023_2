@@ -28,12 +28,14 @@ import Sound from 'react-native-sound';
 Sound.setCategory('Playback');
 let sound = new Sound(SoundFile);
 
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useNavigationState} from '@react-navigation/native';
 
 const MathGame: React.FC = () => {
   const [isPlaing, setIsPlaing] = React.useState(false);
 
   const navigation = useNavigation();
+
+  const state = useNavigationState(state => state);
 
   React.useEffect(() => {
     setIsPlaing(true);
@@ -42,6 +44,11 @@ const MathGame: React.FC = () => {
       sound.release();
     };
   }, []);
+
+  React.useEffect(() => {
+    setIsPlaing(false);
+    sound.release();
+  }, [state]);
 
   const handlePlaySound = () => {
     if (!isPlaing) {
@@ -203,7 +210,7 @@ const styles = StyleSheet.create({
     flex: 1,
     position: 'relative',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     // alignItems: 'flex-end',
     paddingBottom: 20,
   },
