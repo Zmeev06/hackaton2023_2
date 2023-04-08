@@ -24,6 +24,7 @@ import {font} from '../variables/font';
 
 import Logo from '../assets/img/logo.png';
 import HeaderMainScreen from '../components/HeaderMainScreen';
+import {colors} from '../variables/colors';
 
 const MainScreen: React.FC<MainScreenProps> = ({}) => {
   const [subjects, setSubjects] = useState([
@@ -36,7 +37,7 @@ const MainScreen: React.FC<MainScreenProps> = ({}) => {
   ]);
   return (
     <SafeAreaView style={globalStyles.safeAreaView}>
-      <StatusBar barStyle={'dark-content'} backgroundColor={'#fff'} />
+      <StatusBar barStyle={'dark-content'} backgroundColor={colors.bg} />
       <View style={styles.container}>
         <View style={styles.titleContainer}>
           <Image style={{height: 25, width: 25}} source={Logo} />

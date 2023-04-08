@@ -6,8 +6,6 @@ import RatingImage from '../assets/img/rating.png';
 import ProfileImage from '../assets/img/profile_2.png';
 import {font} from '../variables/font';
 
-// import { Container } from './styles';
-
 const HeaderMainScreen: React.FC = () => {
   return (
     <View style={styles.container}>
