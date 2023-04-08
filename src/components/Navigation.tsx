@@ -6,6 +6,7 @@ import MathGame from '../screens/MathGame';
 import Difficult from '../screens/Difficult';
 import CalcScreen from '../screens/CalcScreen';
 import {RootStackParamList} from '../interfaces/propsinterfaces';
+import WhatIsNumber from '../screens/WhatIsNumber';
 
 const Navigation: React.FC = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -31,6 +32,11 @@ const Navigation: React.FC = () => {
         <Stack.Screen
           name="CalcScreen"
           component={CalcScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="WhatIsNumber"
+          component={WhatIsNumber}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

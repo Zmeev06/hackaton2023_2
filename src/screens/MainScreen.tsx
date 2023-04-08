@@ -46,6 +46,8 @@ const MainScreen: React.FC<MainScreenProps> = ({}) => {
     {img: game6, title: 'Логика', colorGradient: ['#AB9CE4', '#DFD7FF']},
   ];
 
+  console.log([...Array(21)].map((_, index) => index));
+
   return (
     <SafeAreaView style={globalStyles.safeAreaView}>
       <StatusBar barStyle={'dark-content'} backgroundColor={colors.bg} />
