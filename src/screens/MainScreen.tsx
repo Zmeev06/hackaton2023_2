@@ -8,8 +8,6 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import {MainScreenProps} from '../interfaces/propsinterfaces';
-import MiniContainer from '../components/UI/MiniContainer';
-import profile from '../assets/img/MainScreenImgs/profile.png';
 import game1 from '../assets/img/MainScreenImgs/game1.png';
 import game2 from '../assets/img/MainScreenImgs/game2.png';
 import game3 from '../assets/img/MainScreenImgs/game3.png';

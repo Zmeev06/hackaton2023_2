@@ -12,3 +12,11 @@ export interface SubjectHorizontalProps {
   pressHandler?: () => void;
   colorGradient: [string, string];
 }
+
+export interface StartGameProps {
+  img: any;
+  color: string;
+  title: string;
+  text: string;
+  sound: any;
+}
