@@ -1,3 +1,4 @@
 {
-    "files.defaultLanguage": "tsx"
+    "files.defaultLanguage": "tsx",
+    "files.eol": "\n",
 }

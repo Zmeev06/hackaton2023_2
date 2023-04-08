@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {colors} from './variables/colors';
 
 interface GlobaStyles {
   safeAreaView: {
@@ -8,7 +9,7 @@ interface GlobaStyles {
 
 export const globalStyles: GlobaStyles = StyleSheet.create({
   safeAreaView: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.bg,
     flex: 1,
   },
 });
