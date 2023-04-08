@@ -2,15 +2,17 @@ import {Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
 import React from 'react';
 import {SubjectHorizontalProps} from '../../interfaces/propsinterfaces';
 import LinearGradient from 'react-native-linear-gradient';
+import {font} from '../../variables/font';
+import {colors} from '../../variables/colors';
 
 const SubjectHorizontal: React.FC<SubjectHorizontalProps> = ({
   img,
   title,
-  pressHandler,
+  onPress,
   colorGradient,
 }) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onPress}>
       <LinearGradient
         colors={colorGradient}
         style={styles.container}
@@ -30,11 +32,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 23,
     borderRadius: 20,
     marginBottom: 10,
+    paddingRight: 10,
   },
   title: {
-    fontWeight: '900',
+    fontFamily: font.black,
     fontSize: 25,
-    color: '#4D4D4D',
+    color: colors.black,
   },
   img: {
     maxWidth: 140,
