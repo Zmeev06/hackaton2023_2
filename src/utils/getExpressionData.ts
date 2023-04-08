@@ -1,4 +1,5 @@
 import {Operations} from '../Types';
+import {randomSort} from './randomSort';
 
 export const getExpressionData = (exp: string, type: Operations) => {
   let [num_1, num_2] = exp.split(' ').map(num => +num);
@@ -6,21 +7,21 @@ export const getExpressionData = (exp: string, type: Operations) => {
   let res: number;
 
   switch (type) {
-    case '*':
+    case 'multiple':
       res = num_1 * num_2;
       break;
-    case '+':
+    case 'plus':
       res = num_1 + num_2;
       break;
-    case '-':
+    case 'minus':
       res = num_1 - num_2;
       break;
-    case '/':
+    case 'devide':
       res = num_1 / num_2;
       break;
   }
 
-  const answers = [res, res - 1, res + 1].sort(() => Math.random() - 0.5);
+  const answers = randomSort([res, res - 1, res + 1]);
 
   return {answers, num_1, num_2, res};
 };
