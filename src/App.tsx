@@ -1,9 +1,9 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
-import StartGameScreen from './screens/StartGameScreen';
+
+import Navigation from './components/Navigation';
 
 const App: React.FC = () => {
-  return <StartGameScreen />;
+  return <Navigation />;
 };
 
 export default App;
