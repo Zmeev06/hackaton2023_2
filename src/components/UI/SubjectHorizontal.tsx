@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 23,
     borderRadius: 20,
-    marginBottom: 10,
+    marginBottom: 20,
     paddingRight: 10,
   },
   title: {

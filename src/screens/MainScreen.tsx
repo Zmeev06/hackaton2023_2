@@ -55,7 +55,7 @@ const MainScreen: React.FC<MainScreenProps> = ({}) => {
             <Image style={{height: 25, width: 25}} source={Logo} />
             <Text style={styles.title}>Умняшка</Text>
           </View>
-          <HeaderMainScreen />
+          {/* <HeaderMainScreen /> */}
           <View style={styles.content}>
             {subjects.map((item, index) => (
               <SubjectHorizontal

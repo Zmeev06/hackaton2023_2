@@ -1,4 +1,4 @@
-import {Difficult} from '../Types';
+import {Difficult, Operations} from '../Types';
 
 export interface MainScreenProps {}
 
@@ -31,5 +31,5 @@ export type RootStackParamList = {
   Home: undefined;
   MathGame: undefined;
   Difficult: {type: string} | undefined;
-  CalcScreen: {type: string; diff: Difficult};
+  CalcScreen: {type: Operations; diff: Difficult};
 };

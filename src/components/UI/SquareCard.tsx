@@ -12,7 +12,7 @@ interface SquareCardProps {
 const SquareCard: React.FC<SquareCardProps> = ({children, onPress}) => {
   const device = getDeviceSizes();
 
-  const halfDevice = device.width / 2 - 15;
+  const halfDevice = device.width / 2 - 20;
 
   const halfCardSizes = {
     width: halfDevice,
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 20,
     overflow: 'hidden',
-    marginBottom: 10,
+    marginBottom: 20,
   },
 });
 
