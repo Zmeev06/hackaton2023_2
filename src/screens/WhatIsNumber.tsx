@@ -27,6 +27,7 @@ const WhatIsNumber: React.FC = () => {
   const [isBad, setIsBad] = React.useState(false);
 
   const [modalIsVisible, setModalIsVisible] = React.useState(false);
+  const [isPlaying, setIsPlaying] = React.useState(true);
 
   React.useEffect(() => {
     if ((isBad || isGood) && !modalIsVisible) {
@@ -48,18 +49,25 @@ const WhatIsNumber: React.FC = () => {
   );
 
   React.useEffect(() => {
-    const playSound = new Sound(GameSound, () => playSound.play());
+    const playSound = new Sound(GameSound, () => {
+      playSound.play(() => setIsPlaying(false));
+    });
   }, []);
 
   async function sendAnswer(answer: number) {
     'SEND ANSWER';
     //@ts-ignore
     // whoosh.play();
+    setIsPlaying(true);
     if (answer === randomNum) {
-      const whoosh = new Sound(GoodSound, () => whoosh.play());
+      const whoosh = new Sound(GoodSound, () =>
+        whoosh.play(() => setIsPlaying(false)),
+      );
       setIsGood(true);
     } else {
-      const whoosh = new Sound(BadSound, () => whoosh.play());
+      const whoosh = new Sound(BadSound, () =>
+        whoosh.play(() => setIsPlaying(false)),
+      );
       setIsBad(true);
     }
   }
@@ -77,8 +85,10 @@ const WhatIsNumber: React.FC = () => {
       }, 500);
       setRandomNum(randomSort(numbers)[0]);
       setTimeout(() => {
-        const playSound = new Sound(GameSound, () => playSound.play());
-      }, 1000);
+        const playSound = new Sound(GameSound, () =>
+          playSound.play(() => setIsPlaying(false)),
+        );
+      }, 500);
       // isGood && navigation.navigate('MathGame');
     }
   }
@@ -99,6 +109,7 @@ const WhatIsNumber: React.FC = () => {
         <View style={styles.expContainer}>
           {answers.map((item, index) => (
             <TouchableOpacity
+              disabled={isPlaying}
               key={index}
               onPress={() => sendAnswer(item)}
               style={styles.answerBtn}>

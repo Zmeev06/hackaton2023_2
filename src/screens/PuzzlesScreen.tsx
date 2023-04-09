@@ -21,11 +21,41 @@ import Puzzle_4 from '../assets/img/puzzles/puzzle_4.png';
 
 import EnotImage from '../assets/img/enot.png';
 import SoundBtn from '../components/UI/SoundBtn';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useNavigationState} from '@react-navigation/native';
+
+import Sound from 'react-native-sound';
+import RacoonSound from '../assets/sounds/racoon.mp3';
+Sound.setCategory('Playback');
+let sound = new Sound(RacoonSound);
 
 const PuzzlesScreen: React.FC = () => {
-  function handlePlaySound() {}
   const navigation = useNavigation();
+  const [isPlaying, setIsPlaying] = React.useState(true);
+
+  const state = useNavigationState(state => state);
+
+  React.useState(() => {
+    if (isPlaying) sound.release();
+  }, [state]);
+
+  React.useEffect(() => {
+    sound = new Sound(RacoonSound, () => sound.play(() => setIsPlaying(false)));
+    // sound.play(() => setIsPlaing(false));
+    return () => {
+      sound.release();
+    };
+  }, []);
+
+  const handlePlaySound = () => {
+    if (!isPlaying) {
+      sound = new Sound(RacoonSound, () =>
+        sound.play(() => {
+          setIsPlaying(false);
+        }),
+      );
+      setIsPlaying(true);
+    }
+  };
 
   return (
     <SafeAreaView style={globalStyles.safeAreaView}>
@@ -58,7 +88,7 @@ const PuzzlesScreen: React.FC = () => {
               alignItems: 'flex-start',
               flexDirection: 'row',
             }}>
-            <SoundBtn handle={() => console.log('ok')} />
+            <SoundBtn handle={() => handlePlaySound()} />
             <Image
               style={{height: 180, resizeMode: 'contain', maxWidth: 200}}
               source={EnotImage}

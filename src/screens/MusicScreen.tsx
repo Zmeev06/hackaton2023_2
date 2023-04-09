@@ -15,7 +15,7 @@ import Music_4 from '../assets/img/music/music_4.png';
 import MonkeyImage from '../assets/img/monkey.png';
 
 import SoundBtn from '../components/UI/SoundBtn';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useNavigationState} from '@react-navigation/native';
 
 import Sound from 'react-native-sound';
 Sound.setCategory('Playback');
@@ -25,11 +25,39 @@ import Sound_2 from '../assets/sounds/music/music_2.mp3';
 import Sound_3 from '../assets/sounds/music/music_3.mp3';
 import Sound_4 from '../assets/sounds/music/music_4.mp3';
 
+import MonkeySound from '../assets/sounds/monkey.mp3';
+
+let startSound = new Sound(MonkeySound);
+
 const MusicScreen: React.FC = () => {
-  function handlePlaySound() {}
-  const [isPlaying, setIsPlaying] = React.useState(false);
+  const [isPlaying, setIsPlaying] = React.useState(true);
 
   const [isActive, setIsActive] = React.useState(null);
+
+  const state = useNavigationState(state => state);
+
+  React.useEffect(() => {
+    startSound = new Sound(MonkeySound, () => {
+      startSound.play(() => setIsPlaying(false));
+    });
+
+    return () => {
+      startSound.release();
+    };
+  }, []);
+
+  React.useEffect(() => {
+    startSound.release();
+  }, [state]);
+
+  function startPlay() {
+    if (!isPlaying) {
+      setIsPlaying(true);
+      startSound = new Sound(MonkeySound, () => {
+        startSound.play(() => setIsPlaying(false));
+      });
+    }
+  }
 
   function handlePlayMusic(music, inst) {
     if (!isPlaying) {
@@ -95,7 +123,7 @@ const MusicScreen: React.FC = () => {
               alignItems: 'flex-start',
               flexDirection: 'row',
             }}>
-            <SoundBtn handle={() => console.log('ok')} />
+            <SoundBtn handle={() => startPlay()} />
             <Image
               style={{height: 180, resizeMode: 'contain', maxWidth: 200}}
               source={MonkeyImage}

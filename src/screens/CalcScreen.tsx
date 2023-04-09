@@ -34,6 +34,7 @@ import Sound from 'react-native-sound';
 import GoodSound from '../assets/sounds/like1.mp3';
 import BadSound from '../assets/sounds/retry.mp3';
 import CustomModal from '../components/UI/CustomModal';
+import {numsSounds, operatorsSounds} from '../data/nums';
 
 const CalcScreen: React.FC<
   NativeStackScreenProps<RootStackParamList, 'CalcScreen'>
@@ -65,6 +66,20 @@ const CalcScreen: React.FC<
       setModalIsVisible(true);
     }
   }, [isBad, isGood]);
+
+  React.useEffect(() => {
+    if (num_1 && num_2) {
+      setTimeout(() => {
+        const whoosh = new Sound(numsSounds[num_1], () => whoosh.play());
+        setTimeout(() => {
+          const whoosh = new Sound(operatorsSounds[type], () => whoosh.play());
+        }, 800);
+        setTimeout(() => {
+          const whoosh = new Sound(numsSounds[num_2], () => whoosh.play());
+        }, 1500);
+      }, 1000);
+    }
+  }, [num_1, num_2]);
 
   const answerImages = answers.map(num => ({
     element: <NumImage num={num} answer={true} />,

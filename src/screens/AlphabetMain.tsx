@@ -23,7 +23,6 @@ import GameImage from '../assets/img/deer.png';
 
 import SoundFile from '../assets/sounds/alphabet.mp3';
 import Sound from 'react-native-sound';
-Sound.setCategory('Playback');
 let sound = new Sound(SoundFile);
 Sound.setCategory('Playback');
 
