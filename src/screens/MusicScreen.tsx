@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  View,
-  SafeAreaView,
-  StyleSheet,
-  Image,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
+import {View, SafeAreaView, StyleSheet, Image, ScrollView} from 'react-native';
 import Header from '../components/Header';
 import {colors} from '../variables/colors';
 import {globalStyles} from '../globalStyles';
@@ -14,18 +7,18 @@ import {globalStyles} from '../globalStyles';
 import SquareCard from '../components/UI/SquareCard';
 
 //puzzles
-import Puzzle_1 from '../assets/img/puzzles/puzzle_1.png';
-import Puzzle_2 from '../assets/img/puzzles/puzzle_2.png';
-import Puzzle_3 from '../assets/img/puzzles/puzzle_3.png';
-import Puzzle_4 from '../assets/img/puzzles/puzzle_4.png';
+import Music_1 from '../assets/img/music/music_1.png';
+import Music_2 from '../assets/img/music/music_3.png';
+import Music_3 from '../assets/img/music/music_3.png';
+import Music_4 from '../assets/img/music/music_4.png';
 
-import EnotImage from '../assets/img/enot.png';
+import MonkeyImage from '../assets/img/monkey.png';
+
 import SoundBtn from '../components/UI/SoundBtn';
 import {useNavigation} from '@react-navigation/native';
 
-const PuzzlesScreen: React.FC = () => {
+const MusicScreen: React.FC = () => {
   function handlePlaySound() {}
-  const navigation = useNavigation();
 
   return (
     <SafeAreaView style={globalStyles.safeAreaView}>
@@ -33,23 +26,27 @@ const PuzzlesScreen: React.FC = () => {
       <ScrollView style={{flex: 1, flexGrow: 1}}>
         <View style={styles.container}>
           <View style={styles.row}>
-            <SquareCard
-              onPress={() => navigation.navigate('Puzzle', {image: Puzzle_1})}>
-              <Image style={styles.imageStyle} source={Puzzle_1} />
+            <SquareCard onPress={() => {}}>
+              <View style={styles.imageContainer}>
+                <Image style={styles.imageStyle} source={Music_1} />
+              </View>
             </SquareCard>
-            <SquareCard
-              onPress={() => navigation.navigate('Puzzle', {image: Puzzle_2})}>
-              <Image style={styles.imageStyle} source={Puzzle_2} />
+            <SquareCard onPress={() => {}}>
+              <View style={styles.imageContainer}>
+                <Image style={styles.imageStyle} source={Music_2} />
+              </View>
             </SquareCard>
           </View>
           <View style={styles.row}>
-            <SquareCard
-              onPress={() => navigation.navigate('Puzzle', {image: Puzzle_3})}>
-              <Image style={styles.imageStyle} source={Puzzle_3} />
+            <SquareCard onPress={() => {}}>
+              <View style={styles.imageContainer}>
+                <Image style={styles.imageStyle} source={Music_3} />
+              </View>
             </SquareCard>
-            <SquareCard
-              onPress={() => navigation.navigate('Puzzle', {image: Puzzle_4})}>
-              <Image style={styles.imageStyle} source={Puzzle_4} />
+            <SquareCard onPress={() => {}}>
+              <View style={styles.imageContainer}>
+                <Image style={styles.imageStyle} source={Music_4} />
+              </View>
             </SquareCard>
           </View>
           <View
@@ -61,7 +58,7 @@ const PuzzlesScreen: React.FC = () => {
             <SoundBtn handle={() => console.log('ok')} />
             <Image
               style={{height: 180, resizeMode: 'contain', maxWidth: 200}}
-              source={EnotImage}
+              source={MonkeyImage}
             />
           </View>
         </View>
@@ -76,6 +73,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingTop: 40,
   },
+  imageContainer: {
+    height: '100%',
+    width: '100%',
+    backgroundColor: '#ffdcbe',
+    padding: 20,
+  },
   imageStyle: {
     width: '100%',
     height: '100%',
@@ -87,4 +90,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PuzzlesScreen;
+export default MusicScreen;

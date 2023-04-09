@@ -80,7 +80,7 @@ const MainScreen: React.FC<MainScreenProps> = ({}) => {
 
             <View
               style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-              <SquareCard onPress={() => {}}>
+              <SquareCard onPress={() => navigation.navigate('MusicScreen')}>
                 <LinearGradient
                   colors={['#2C9F7D', '#76E2C2']}
                   style={{width: '100%', height: '100%'}}

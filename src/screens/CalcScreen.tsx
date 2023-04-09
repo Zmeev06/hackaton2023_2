@@ -49,10 +49,12 @@ const CalcScreen: React.FC<
 
   const {type, diff} = route.params;
 
-  const exp = randomSortStrings(MATH_EXPRESSIONS[type][diff])[0];
+  const [exp, setExp] = React.useState(
+    randomSortStrings(MATH_EXPRESSIONS[type][diff])[0],
+  );
   const {answers, num_1, num_2, res} = React.useMemo(
     () => getExpressionData(exp, type),
-    [],
+    [exp],
   );
 
   const OperatoImage = getOperatorImage(type);
@@ -94,7 +96,7 @@ const CalcScreen: React.FC<
       setTimeout(() => {
         setIsGood(false);
       }, 500);
-      isGood && navigation.navigate('MathGame');
+      isGood && setExp(randomSortStrings(MATH_EXPRESSIONS[type][diff])[0]);
     }
   }
 

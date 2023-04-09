@@ -23,8 +23,6 @@ import {numbers, string_numbers} from '../data/static';
 import GameSound from '../assets/sounds/what.mp3';
 
 const WhatIsNumber: React.FC = () => {
-  React.useEffect(() => {}, []);
-
   const [isGood, setIsGood] = React.useState(false);
   const [isBad, setIsBad] = React.useState(false);
 

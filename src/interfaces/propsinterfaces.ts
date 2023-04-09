@@ -28,7 +28,9 @@ export interface StartGameProps {
 }
 
 export type RootStackParamList = {
+  MusicScreen: undefined;
   Home: undefined;
+  HoneyGame: undefined;
   Puzzle: {image: string};
   PuzzlesScreen: undefined;
   AlphabetMain: undefined;
