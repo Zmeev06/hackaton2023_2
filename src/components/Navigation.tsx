@@ -9,8 +9,12 @@ import {RootStackParamList} from '../interfaces/propsinterfaces';
 import AlphabetMain from '../screens/AlphabetMain';
 import AlphabetGame from '../screens/AlphabetGame';
 import WhatIsNumber from '../screens/WhatIsNumber';
+<<<<<<< Updated upstream
 import Puzzle from '../screens/Puzzle';
 import PuzzlesScreen from '../screens/PuzzlesScreen';
+=======
+import HoneyGame from '../screens/HoneyGame';
+>>>>>>> Stashed changes
 
 const Navigation: React.FC = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -46,6 +50,11 @@ const Navigation: React.FC = () => {
         <Stack.Screen
           name="AlphabetGame"
           component={AlphabetGame}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="HoneyGame"
+          component={HoneyGame}
           options={{headerShown: false}}
         />
         <Stack.Screen

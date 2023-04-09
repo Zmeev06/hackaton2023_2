@@ -82,7 +82,7 @@ const AlphabetMain: React.FC = () => {
                 <Text style={styles.gameTitle}>Алфавит</Text>
               </View>
             </SquareCard>
-            <SquareCard onPress={() => navigation.navigate('', {type: 'plus'})}>
+            <SquareCard onPress={() => navigation.navigate('HoneyGame', {type: 'plus'})}>
               <View
                 style={[styles.cardContainer, {backgroundColor: '#ffe9c0'}]}>
                 <Image
@@ -119,6 +119,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: colors.green_dark,
     marginTop: 20,
+    position: 'absolute',
+    left: 0,
+    top: 150,
   },
   bottomBtn: {
     flexDirection: 'row',
@@ -132,9 +135,11 @@ const styles = StyleSheet.create({
     paddingRight: 15,
   },
   bottomImage: {
-    position: 'relative',
+    position: 'absolute',
     resizeMode: 'contain',
     marginTop: 30,
+    right: 0,
+    
   },
   content: {
     marginTop: 20,
@@ -169,7 +174,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    // alignItems: 'flex-end',
+    alignItems: 'flex-end',
     paddingBottom: 20,
   },
 });
