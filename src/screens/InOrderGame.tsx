@@ -81,14 +81,7 @@ const HoneyGame: React.FC = () => {
     'SEND ANSWER';
     //@ts-ignore
     // whoosh.play();
-    console.log(
-      answer.map((item: any) => item.letter).join(''),
-      objs.map(item => item.letter).join(''),
-    );
-    if (
-      answer.map((item: any) => item.letter).join('') ===
-      objs.map(item => item.letter).join('')
-    ) {
+    if (answer.map((item: any) => item.letter).join('') === current) {
       console.log('YES YES');
       const whoosh = new Sound(GoodSound, () => whoosh.play());
       setIsGood(true);
@@ -107,8 +100,13 @@ const HoneyGame: React.FC = () => {
 
     if (isGood) {
       setIsVisible(false);
-      navigation.navigate('MainScreen');
+      navigation.navigate('Home');
     }
+
+    setTimeout(() => {
+      setIsBad(false);
+      setIsGood(false);
+    }, 400);
   }
 
   return (

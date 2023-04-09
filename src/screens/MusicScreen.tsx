@@ -19,6 +19,7 @@ import {useNavigation} from '@react-navigation/native';
 
 const MusicScreen: React.FC = () => {
   function handlePlaySound() {}
+  const [isPlaying, setIsPlaying] = React.useState(false);
 
   return (
     <SafeAreaView style={globalStyles.safeAreaView}>

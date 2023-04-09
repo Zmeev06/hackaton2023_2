@@ -76,6 +76,7 @@ const AlphabetMain: React.FC = () => {
         <ScrollView style={{flex: 1}} contentContainerStyle={{flexGrow: 1}}>
           <View style={[styles.row, {marginTop: 30}]}>
             <SquareCard
+              style={{width: 'auto', flex: 1}}
               onPress={() =>
                 navigation.navigate('AlphabetGame', {type: 'plus'})
               }>
@@ -87,18 +88,6 @@ const AlphabetMain: React.FC = () => {
                   source={GameIcon}
                 />
                 <Text style={styles.gameTitle}>Алфавит</Text>
-              </View>
-            </SquareCard>
-            <SquareCard
-              onPress={() => navigation.navigate('HoneyGame', {type: 'plus'})}>
-              <View
-                style={[styles.cardContainer, {backgroundColor: '#ffe9c0'}]}>
-                <Image
-                  style={styles.operandImage}
-                  resizeMode="contain"
-                  source={GameIcon2}
-                />
-                <Text style={styles.gameTitle}>Соты</Text>
               </View>
             </SquareCard>
           </View>

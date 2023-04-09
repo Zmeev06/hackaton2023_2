@@ -7,9 +7,10 @@ import {getDeviceSizes} from '../../utils/getDeviceSizes';
 interface SquareCardProps {
   children: React.ReactNode;
   onPress?: () => void;
+  style?: any;
 }
 
-const SquareCard: React.FC<SquareCardProps> = ({children, onPress}) => {
+const SquareCard: React.FC<SquareCardProps> = ({children, onPress, style}) => {
   const device = getDeviceSizes();
 
   const halfDevice = device.width / 2 - 20;
@@ -20,7 +21,9 @@ const SquareCard: React.FC<SquareCardProps> = ({children, onPress}) => {
   };
 
   return (
-    <TouchableOpacity onPress={onPress} style={[styles.card, halfCardSizes]}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={[styles.card, halfCardSizes, style]}>
       {children}
     </TouchableOpacity>
   );

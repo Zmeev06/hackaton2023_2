@@ -46,7 +46,6 @@ const MainScreen: React.FC<MainScreenProps> = ({}) => {
   ];
 
   const subjects2 = [
-    {img: game5, title: 'Английский', colorGradient: ['#dce485', '#F8FFA9']},
     {
       img: game6,
       title: 'Логика',
@@ -89,7 +88,7 @@ const MainScreen: React.FC<MainScreenProps> = ({}) => {
                   <Text style={styles.textFirstHalfCard}>Музыка</Text>
                 </LinearGradient>
               </SquareCard>
-              <SquareCard onPress={() => {}}>
+              <SquareCard onPress={() => navigation.navigate('HoneyGame')}>
                 <LinearGradient
                   colors={['#C74646', '#E27676']}
                   style={{width: '100%', height: '100%'}}
