@@ -1,0 +1,99 @@
+import letter1 from '../assets/img/Alphabet/letters/letter_1.png';
+import letter2 from '../assets/img/Alphabet/letters/letter_2.png';
+import letter3 from '../assets/img/Alphabet/letters/letter_3.png';
+import letter4 from '../assets/img/Alphabet/letters/letter_4.png';
+import letter5 from '../assets/img/Alphabet/letters/letter_5.png';
+import letter6 from '../assets/img/Alphabet/letters/letter_6.png';
+import letter7 from '../assets/img/Alphabet/letters/letter_7.png';
+import letter8 from '../assets/img/Alphabet/letters/letter_8.png';
+import letter9 from '../assets/img/Alphabet/letters/letter_9.png';
+import letter10 from '../assets/img/Alphabet/letters/letter_10.png';
+import letter11 from '../assets/img/Alphabet/letters/letter_11.png';
+import letter30 from '../assets/img/Alphabet/letters/letter_30.png';
+import letter12 from '../assets/img/Alphabet/letters/letter_12.png';
+import letter13 from '../assets/img/Alphabet/letters/letter_13.png';
+import letter14 from '../assets/img/Alphabet/letters/letter_14.png';
+import letter15 from '../assets/img/Alphabet/letters/letter_15.png';
+import letter16 from '../assets/img/Alphabet/letters/letter_16.png';
+import letter17 from '../assets/img/Alphabet/letters/letter_17.png';
+import letter18 from '../assets/img/Alphabet/letters/letter_18.png';
+import letter19 from '../assets/img/Alphabet/letters/letter_19.png';
+import letter20 from '../assets/img/Alphabet/letters/letter_20.png';
+import letter21 from '../assets/img/Alphabet/letters/letter_21.png';
+import letter22 from '../assets/img/Alphabet/letters/letter_22.png';
+import letter23 from '../assets/img/Alphabet/letters/letter_23.png';
+import letter24 from '../assets/img/Alphabet/letters/letter_24.png';
+import letter25 from '../assets/img/Alphabet/letters/letter_25.png';
+import letter26 from '../assets/img/Alphabet/letters/letter_26.png';
+import letter27 from '../assets/img/Alphabet/letters/letter_27.png';
+import letter28 from '../assets/img/Alphabet/letters/letter_28.png';
+import letter29 from '../assets/img/Alphabet/letters/letter_29.png';
+import letter31 from '../assets/img/Alphabet/letters/letter_31.png';
+import letter32 from '../assets/img/Alphabet/letters/letter_32.png';
+import letter33 from '../assets/img/Alphabet/letters/letter_33.png';
+
+import word0 from '../assets/img/Alphabet/words/word0.png';
+import word1 from '../assets/img/Alphabet/words/word1.png';
+import word2 from '../assets/img/Alphabet/words/word2.png';
+import word3 from '../assets/img/Alphabet/words/word3.png';
+import word4 from '../assets/img/Alphabet/words/word4.png';
+import word5 from '../assets/img/Alphabet/words/word5.png';
+import word6 from '../assets/img/Alphabet/words/word6.png';
+import word7 from '../assets/img/Alphabet/words/word7.png';
+import word8 from '../assets/img/Alphabet/words/word8.png';
+import word9 from '../assets/img/Alphabet/words/word9.png';
+import word10 from '../assets/img/Alphabet/words/word10.png';
+import word11 from '../assets/img/Alphabet/words/word11.png';
+import word12 from '../assets/img/Alphabet/words/word12.png';
+import word13 from '../assets/img/Alphabet/words/word13.png';
+import word14 from '../assets/img/Alphabet/words/word14.png';
+import word15 from '../assets/img/Alphabet/words/word15.png';
+import word16 from '../assets/img/Alphabet/words/word16.png';
+import word17 from '../assets/img/Alphabet/words/word17.png';
+import word18 from '../assets/img/Alphabet/words/word18.png';
+import word19 from '../assets/img/Alphabet/words/word19.png';
+import word20 from '../assets/img/Alphabet/words/word20.png';
+import word21 from '../assets/img/Alphabet/words/word21.png';
+import word22 from '../assets/img/Alphabet/words/word22.png';
+import word23 from '../assets/img/Alphabet/words/word23.png';
+import word24 from '../assets/img/Alphabet/words/word24.png';
+import word25 from '../assets/img/Alphabet/words/word25.png';
+import word26 from '../assets/img/Alphabet/words/word26.png';
+import word27 from '../assets/img/Alphabet/words/word27.png';
+import word28 from '../assets/img/Alphabet/words/word28.png';
+
+export const letters = [
+  {img: letter1, word: word0},
+  {img: letter2, word: word1},
+  {img: letter3, word: word2},
+  {img: letter4, word: word3},
+  {img: letter5, word: word4},
+  {img: letter6, word: word5},
+  {img: letter7, word: word6},
+  {img: letter8, word: word7},
+  {img: letter9, word: word8},
+  {img: letter10, word: word9},
+  {img: letter30, word: null},
+  {img: letter11, word: word10},
+  {img: letter12, word: word11},
+  {img: letter13, word: word12},
+  {img: letter14, word: word13},
+  {img: letter15, word: word14},
+  {img: letter16, word: word15},
+  {img: letter17, word: word16},
+  {img: letter18, word: word17},
+  {img: letter19, word: word18},
+  {img: letter20, word: word19},
+  {img: letter21, word: word20},
+  {img: letter22, word: word21},
+  {img: letter23, word: word22},
+  {img: letter24, word: word23},
+  {img: letter25, word: word24},
+  {img: letter26, word: word25},
+  {img: letter27, word: null},
+  {img: letter28, word: null},
+  {img: letter29, word: null},
+  {img: letter31, word: word26},
+  {img: letter32, word: word27},
+  {img: letter33, word: word28},
+];

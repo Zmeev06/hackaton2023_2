@@ -32,14 +32,14 @@ import {useNavigation, useNavigationState} from '@react-navigation/native';
 
 const AlphabetMain: React.FC = () => {
   const [isPlaing, setIsPlaing] = React.useState(false);
-  const [play, pause, stop, data] = useSound('../assets/');
 
   const navigation = useNavigation();
   const state = useNavigationState(state => state);
 
   React.useEffect(() => {
+    sound = new Sound(SoundFile, () => sound.play());
+    // sound.play(() => setIsPlaing(false));
     setIsPlaing(true);
-    sound.play(() => setIsPlaing(false));
     return () => {
       sound.release();
     };
@@ -97,7 +97,7 @@ const AlphabetMain: React.FC = () => {
           <View style={styles.bottomContainer}>
             <TouchableOpacity
               onPress={() => {
-                handlePlaySound()
+                handlePlaySound();
               }}
               style={styles.soundBtn}>
               <SoundImage />

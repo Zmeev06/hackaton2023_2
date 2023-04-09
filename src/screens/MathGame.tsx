@@ -25,7 +25,7 @@ import NumsImage from '../assets/img/nums.png';
 
 import SoundFile from '../assets/sounds/rabbit.mp3';
 import Sound from 'react-native-sound';
-Sound.setCategory('Playback');
+// Sound.setCategory('Playback');
 let sound = new Sound(SoundFile);
 
 import {useNavigation, useNavigationState} from '@react-navigation/native';
@@ -35,12 +35,12 @@ const MathGame: React.FC = () => {
   const [isPlaing, setIsPlaing] = React.useState(false);
 
   const navigation = useNavigation();
-
   const state = useNavigationState(state => state);
 
   React.useEffect(() => {
-    setIsPlaing(true);
-    sound.play(() => setIsPlaing(false));
+    sound = new Sound(SoundFile, () => sound.play());
+    // setIsPlaing(true);
+    // sound.play(() => setIsPlaing(false));
     return () => {
       sound.release();
     };
