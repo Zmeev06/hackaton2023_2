@@ -15,17 +15,23 @@ import {letters} from '../variables/letters';
 
 const AlphabetGame: React.FC = () => {
   const navigation = useNavigation();
-  const [letter, setLetter] = useState('')
+  const [letter, setLetter] = useState('');
   return (
     <SafeAreaView style={globalStyles.safeAreaView}>
       <Header title="Алфавит" color={colors.green_dark} />
       <View style={styles.letterMain}>
-        <Image />
+        <Image source={letters[Number(letter)].img} />
+        <Image source={letters[Number(letter)].word} />
       </View>
       <View style={styles.lettersBlock}>
         {letters.map((item, index) => (
-          <TouchableOpacity style={styles.letterBlock} key={index} onPress={() => setLetter(index)}>
-            <Image style={styles.letterImg} source={item} />
+          <TouchableOpacity
+            style={styles.letterBlock}
+            key={index}
+            onPress={() => {
+              setLetter(`${index}`);
+            }}>
+            <Image style={styles.letterImg} source={item.img} />
           </TouchableOpacity>
         ))}
       </View>
@@ -41,16 +47,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   letterBlock: {
-    width: 40,
-    height: 40,
+    width: 50,
+    height: 50,
+    marginHorizontal: 5,
   },
   letterImg: {
-    width: 30,
-    height: 30,
+    maxWidth: 50,
+    maxHeight: 50,
+    resizeMode: 'contain',
   },
   letterMain: {
-    height: '70%'
-  }
+    height: '50%',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingTop: 40
+  },
 });
 
 export default AlphabetGame;
