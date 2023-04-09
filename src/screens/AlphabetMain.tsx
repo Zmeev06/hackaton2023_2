@@ -53,10 +53,6 @@ const AlphabetMain: React.FC = () => {
     firstRender.current = false;
   }, [state]);
 
-  React.useEffect(() => {
-    console.log('ISPLAING', isPlaing);
-  }, [isPlaing]);
-
   const handlePlaySound = () => {
     if (!isPlaing) {
       sound = new Sound(SoundFile, () =>

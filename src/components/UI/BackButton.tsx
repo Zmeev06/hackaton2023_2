@@ -4,11 +4,15 @@ import {TouchableOpacity, StyleSheet, Image} from 'react-native';
 
 import BackArrowImage from '../../assets/img/backArrow.png';
 
-const BackButton: React.FC<{bgColor: string}> = ({bgColor}) => {
+const BackButton: React.FC<{bgColor: string; disable?: boolean}> = ({
+  bgColor,
+  disable,
+}) => {
   const navigation = useNavigation();
 
   return (
     <TouchableOpacity
+      disabled={disable}
       style={[styles.btn, {backgroundColor: bgColor}]}
       onPress={() => navigation.goBack()}>
       <Image source={BackArrowImage} style={styles.arrow} />

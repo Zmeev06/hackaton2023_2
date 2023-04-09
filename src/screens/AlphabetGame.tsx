@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import {globalStyles} from '../globalStyles';
-import {RouteProp, useNavigation} from '@react-navigation/native';
+import {useNavigation, useNavigationState} from '@react-navigation/native';
 import {colors} from '../variables/colors';
 import Header from '../components/Header';
 import {letters} from '../data/letters';
@@ -22,6 +22,14 @@ const AlphabetGame: React.FC = () => {
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [current, setCurrent] = React.useState(null);
+
+  // React.useEffect(() => {
+  //   if (!firstRender.current) {
+  //     setIsPlaing(false);
+  //     sound.release();
+  //   }
+  //   firstRender.current = false;
+  // }, [state]);
 
   function playSound(index) {
     if (!isPlaying) {
@@ -38,7 +46,7 @@ const AlphabetGame: React.FC = () => {
 
   return (
     <SafeAreaView style={globalStyles.safeAreaView}>
-      <Header title="Алфавит" color={colors.green_dark} />
+      <Header disable={isPlaying} title="Алфавит" color={colors.green_dark} />
       <View style={styles.letterMain}>
         <Image
           style={{width: 100, height: 130, resizeMode: 'contain'}}

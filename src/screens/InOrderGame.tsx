@@ -111,7 +111,7 @@ const HoneyGame: React.FC = () => {
 
   return (
     <SafeAreaView style={globalStyles.safeAreaView}>
-      <Header title="По порядку" color={colors.green_dark} />
+      <Header title="Расставь по порядку" color={colors.green_dark} />
       <View style={styles.enterBlock}>
         {[...Array(5)].map((item, index) => (
           <View key={index} style={styles.letterLine}>

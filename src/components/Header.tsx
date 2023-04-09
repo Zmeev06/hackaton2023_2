@@ -6,10 +6,14 @@ import {colors} from '../variables/colors';
 
 // import { Container } from './styles';
 
-const Header: React.FC<{color: string; title: string}> = ({color, title}) => {
+const Header: React.FC<{color: string; title: string; disable?: boolean}> = ({
+  color,
+  title,
+  disable,
+}) => {
   return (
     <View style={styles.headerContainer}>
-      <BackButton bgColor={color} />
+      <BackButton disable={disable} bgColor={color} />
       <Text style={styles.title}>{title}</Text>
       <View style={{width: 50}} />
     </View>
