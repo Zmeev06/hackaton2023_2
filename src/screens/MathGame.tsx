@@ -32,23 +32,26 @@ import {useNavigation, useNavigationState} from '@react-navigation/native';
 import SoundBtn from '../components/UI/SoundBtn';
 
 const MathGame: React.FC = () => {
-  const [isPlaing, setIsPlaing] = React.useState(false);
+  const [isPlaing, setIsPlaing] = React.useState(true);
 
   const navigation = useNavigation();
   const state = useNavigationState(state => state);
 
+  const firstRender = React.useRef(true);
+
   React.useEffect(() => {
-    sound = new Sound(SoundFile, () => sound.play());
-    // setIsPlaing(true);
-    // sound.play(() => setIsPlaing(false));
+    sound = new Sound(SoundFile, () => sound.play(() => setIsPlaing(false)));
     return () => {
       sound.release();
     };
   }, []);
 
   React.useEffect(() => {
-    setIsPlaing(false);
-    sound.release();
+    if (!firstRender.current) {
+      setIsPlaing(false);
+      sound.release();
+    }
+    firstRender.current = false;
   }, [state]);
 
   const handlePlaySound = () => {

@@ -11,7 +11,11 @@ import AlphabetGame from '../screens/AlphabetGame';
 import WhatIsNumber from '../screens/WhatIsNumber';
 import Puzzle from '../screens/Puzzle';
 import PuzzlesScreen from '../screens/PuzzlesScreen';
+<<<<<<< Updated upstream
 import HoneyGame from '../screens/InOrderGame';
+=======
+import HoneyGame from '../screens/HoneyGame';
+>>>>>>> Stashed changes
 
 const Navigation: React.FC = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();

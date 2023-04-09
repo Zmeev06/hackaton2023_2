@@ -21,34 +21,41 @@ import {globalStyles} from '../globalStyles';
 
 import GameImage from '../assets/img/deer.png';
 
-import useSound from 'react-native-use-sound';
 import SoundFile from '../assets/sounds/alphabet.mp3';
 import Sound from 'react-native-sound';
 Sound.setCategory('Playback');
 let sound = new Sound(SoundFile);
-// Sound.setCategory('Playback');
+Sound.setCategory('Playback');
 
 import {useNavigation, useNavigationState} from '@react-navigation/native';
 
 const AlphabetMain: React.FC = () => {
-  const [isPlaing, setIsPlaing] = React.useState(false);
+  const [isPlaing, setIsPlaing] = React.useState(true);
 
   const navigation = useNavigation();
   const state = useNavigationState(state => state);
 
+  const firstRender = React.useRef(true);
+
   React.useEffect(() => {
-    sound = new Sound(SoundFile, () => sound.play());
+    sound = new Sound(SoundFile, () => sound.play(() => setIsPlaing(false)));
     // sound.play(() => setIsPlaing(false));
-    setIsPlaing(true);
     return () => {
       sound.release();
     };
   }, []);
 
   React.useEffect(() => {
-    setIsPlaing(false);
-    sound.release();
+    if (!firstRender.current) {
+      setIsPlaing(false);
+      sound.release();
+    }
+    firstRender.current = false;
   }, [state]);
+
+  React.useEffect(() => {
+    console.log('ISPLAING', isPlaing);
+  }, [isPlaing]);
 
   const handlePlaySound = () => {
     if (!isPlaing) {
@@ -58,8 +65,8 @@ const AlphabetMain: React.FC = () => {
           console.log('STOPPED');
         }),
       );
+      setIsPlaing(true);
     }
-    setIsPlaing(true);
   };
 
   return (
@@ -67,7 +74,7 @@ const AlphabetMain: React.FC = () => {
       <Header title="Алфавит" color={colors.green_dark} />
       <View style={[globalStyles.container, {flex: 1}]}>
         <ScrollView style={{flex: 1}} contentContainerStyle={{flexGrow: 1}}>
-          <View style={[styles.row, {marginTop: 20}]}>
+          <View style={[styles.row, {marginTop: 30}]}>
             <SquareCard
               onPress={() =>
                 navigation.navigate('AlphabetGame', {type: 'plus'})
@@ -82,7 +89,8 @@ const AlphabetMain: React.FC = () => {
                 <Text style={styles.gameTitle}>Алфавит</Text>
               </View>
             </SquareCard>
-            <SquareCard onPress={() => navigation.navigate('HoneyGame', {type: 'plus'})}>
+            <SquareCard
+              onPress={() => navigation.navigate('HoneyGame', {type: 'plus'})}>
               <View
                 style={[styles.cardContainer, {backgroundColor: '#ffe9c0'}]}>
                 <Image
@@ -96,6 +104,7 @@ const AlphabetMain: React.FC = () => {
           </View>
           <View style={styles.bottomContainer}>
             <TouchableOpacity
+              disabled={isPlaing}
               onPress={() => {
                 handlePlaySound();
               }}
@@ -135,11 +144,9 @@ const styles = StyleSheet.create({
     paddingRight: 15,
   },
   bottomImage: {
-    position: 'absolute',
     resizeMode: 'contain',
     marginTop: 30,
     right: 0,
-    
   },
   content: {
     marginTop: 20,
@@ -173,7 +180,7 @@ const styles = StyleSheet.create({
     flex: 1,
     position: 'relative',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'flex-end',
     paddingBottom: 20,
   },

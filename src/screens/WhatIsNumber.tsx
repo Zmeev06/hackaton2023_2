@@ -15,6 +15,8 @@ import Sound from 'react-native-sound';
 Sound.setCategory('Playback');
 
 import GoodSound from '../assets/sounds/like1.mp3';
+import BadSound from '../assets/sounds/retry.mp3';
+
 import CustomModal from '../components/UI/CustomModal';
 import {numbers, string_numbers} from '../data/static';
 
@@ -59,6 +61,7 @@ const WhatIsNumber: React.FC = () => {
       const whoosh = new Sound(GoodSound, () => whoosh.play());
       setIsGood(true);
     } else {
+      const whoosh = new Sound(BadSound, () => whoosh.play());
       setIsBad(true);
     }
   }

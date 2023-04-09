@@ -12,7 +12,14 @@ const SubjectHorizontal: React.FC<SubjectHorizontalProps> = ({
   colorGradient,
 }) => {
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity
+      style={{
+        height: 120,
+        borderRadius: 20,
+        overflow: 'hidden',
+        marginBottom: 20,
+      }}
+      onPress={onPress}>
       <LinearGradient
         colors={colorGradient}
         style={styles.container}
@@ -30,9 +37,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 23,
-    borderRadius: 20,
-    marginBottom: 20,
-    paddingRight: 10,
+    height: '100%',
+    width: '100%',
   },
   title: {
     fontFamily: font.black,
@@ -40,8 +46,9 @@ const styles = StyleSheet.create({
     color: colors.black,
   },
   img: {
-    maxWidth: 140,
-    maxHeight: 100,
+    maxWidth: 180,
+    maxHeight: 130,
+    marginRight: -30,
   },
 });
 
