@@ -9,6 +9,8 @@ import {RootStackParamList} from '../interfaces/propsinterfaces';
 import AlphabetMain from '../screens/AlphabetMain';
 import AlphabetGame from '../screens/AlphabetGame';
 import WhatIsNumber from '../screens/WhatIsNumber';
+import Puzzle from '../screens/Puzzle';
+import PuzzlesScreen from '../screens/PuzzlesScreen';
 
 const Navigation: React.FC = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -49,6 +51,16 @@ const Navigation: React.FC = () => {
         <Stack.Screen
           name="WhatIsNumber"
           component={WhatIsNumber}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="PuzzlesScreen"
+          component={PuzzlesScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Puzzle"
+          component={Puzzle}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

@@ -29,6 +29,7 @@ Sound.setCategory('Playback');
 let sound = new Sound(SoundFile);
 
 import {useNavigation, useNavigationState} from '@react-navigation/native';
+import SoundBtn from '../components/UI/SoundBtn';
 
 const MathGame: React.FC = () => {
   const [isPlaing, setIsPlaing] = React.useState(false);
@@ -136,13 +137,7 @@ const MathGame: React.FC = () => {
             </Text>
           </TouchableOpacity>
           <View style={styles.bottomContainer}>
-            <TouchableOpacity
-              onPress={() => {
-                handlePlaySound();
-              }}
-              style={styles.soundBtn}>
-              <SoundImage />
-            </TouchableOpacity>
+            <SoundBtn handle={handlePlaySound} />
             <Image source={GameImage} style={styles.bottomImage} />
           </View>
         </ScrollView>
@@ -152,16 +147,6 @@ const MathGame: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  soundBtn: {
-    height: 60,
-    width: 60,
-    borderRadius: 30,
-    overflow: 'hidden',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.green_dark,
-    marginTop: 20,
-  },
   bottomBtn: {
     flexDirection: 'row',
     height: 80,

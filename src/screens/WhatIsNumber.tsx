@@ -6,29 +6,21 @@ import {useNavigation} from '@react-navigation/native';
 import Header from '../components/Header';
 import {colors} from '../variables/colors';
 import {font} from '../variables/font';
-import {getExpressionData} from '../utils/getExpressionData';
-import {MATH_EXPRESSIONS} from '../data/expressions';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../interfaces/propsinterfaces';
-import {randomSort, randomSortStrings} from '../utils/randomSort';
-import {getOperatorImage} from '../utils/getOperator';
+import {randomSort} from '../utils/randomSort';
 import {getNumber} from '../utils/getNumber';
-
-import QuestionImage from '../assets/img/question.png';
-import EqulasImage from '../assets/img/operators/equals.png';
-import QuestionOperatorImage from '../assets/img/operators/question.png';
 
 import GoodImage from '../assets/img/good.png';
 import BadImage from '../assets/img/bad.png';
 import Sound from 'react-native-sound';
+Sound.setCategory('Playback');
 
 import GoodSound from '../assets/sounds/like1.mp3';
 import CustomModal from '../components/UI/CustomModal';
 import {numbers, string_numbers} from '../data/static';
 
-const WhatIsNumber: React.FC = () => {
-  const navigation = useNavigation();
+import GameSound from '../assets/sounds/what.mp3';
 
+const WhatIsNumber: React.FC = () => {
   React.useEffect(() => {}, []);
 
   const [isGood, setIsGood] = React.useState(false);
@@ -44,7 +36,6 @@ const WhatIsNumber: React.FC = () => {
 
   const [randomNum, setRandomNum] = React.useState(randomSort(numbers)[0]);
 
-  const randomNumIndex = numbers.findIndex(item => item === randomNum);
   const arrayWithoutNum = numbers.filter(item => item !== randomNum);
   const answers = React.useMemo(
     () =>
@@ -56,7 +47,9 @@ const WhatIsNumber: React.FC = () => {
     [randomNum],
   );
 
-  console.log(answers);
+  React.useEffect(() => {
+    const playSound = new Sound(GameSound, () => playSound.play());
+  }, []);
 
   async function sendAnswer(answer: number) {
     'SEND ANSWER';
@@ -82,6 +75,9 @@ const WhatIsNumber: React.FC = () => {
         setIsGood(false);
       }, 500);
       setRandomNum(randomSort(numbers)[0]);
+      setTimeout(() => {
+        const playSound = new Sound(GameSound, () => playSound.play());
+      }, 1000);
       // isGood && navigation.navigate('MathGame');
     }
   }

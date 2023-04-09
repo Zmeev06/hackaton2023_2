@@ -6,4 +6,5 @@ export const colors = {
   success: '#7FDC5B',
   warning: '#F4CF70',
   error: '#FF7171',
+  purple: '#AB9CE4',
 };

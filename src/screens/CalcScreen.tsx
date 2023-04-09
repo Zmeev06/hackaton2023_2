@@ -32,6 +32,7 @@ import {getDeviceSizes} from '../utils/getDeviceSizes';
 import Sound from 'react-native-sound';
 
 import GoodSound from '../assets/sounds/like1.mp3';
+import BadSound from '../assets/sounds/retry.mp3';
 import CustomModal from '../components/UI/CustomModal';
 
 const CalcScreen: React.FC<
@@ -57,7 +58,6 @@ const CalcScreen: React.FC<
   const OperatoImage = getOperatorImage(type);
 
   React.useEffect(() => {
-    console.log('USE EFFECT');
     console.log(isBad, isGood);
     if ((isBad || isGood) && !modalIsVisible) {
       setModalIsVisible(true);
@@ -77,6 +77,7 @@ const CalcScreen: React.FC<
       const whoosh = new Sound(GoodSound, () => whoosh.play());
       setIsGood(true);
     } else {
+      const whoosh = new Sound(BadSound, () => whoosh.play());
       setIsBad(true);
     }
   }
@@ -128,14 +129,16 @@ const CalcScreen: React.FC<
       <CustomModal isVisible={modalIsVisible}>
         <Text
           style={[
-            styles.modalText,
+            globalStyles.modalText,
             {color: isBad ? colors.error : colors.success},
           ]}>
           {isBad ? 'Попробуй ещё раз' : 'МОЛОДЕЦ'}
         </Text>
         <Image source={isBad ? BadImage : GoodImage} />
-        <TouchableOpacity style={styles.modalBtn} onPress={handleCloseModal}>
-          <Text style={styles.modalBtnText}>Закрыть</Text>
+        <TouchableOpacity
+          style={globalStyles.modalBtn}
+          onPress={handleCloseModal}>
+          <Text style={globalStyles.modalBtnText}>Закрыть</Text>
         </TouchableOpacity>
       </CustomModal>
     </SafeAreaView>
@@ -167,26 +170,6 @@ const NumImage: React.FC<{num: number; answer?: true}> = ({num, answer}) => {
 };
 
 const styles = StyleSheet.create({
-  modalText: {
-    fontFamily: font.black,
-    fontSize: 30,
-    paddingBottom: 30,
-  },
-  modalBtn: {
-    height: 60,
-    borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#EABE4D',
-    marginBottom: 10,
-    alignSelf: 'stretch',
-    marginTop: 30,
-  },
-  modalBtnText: {
-    fontFamily: font.black,
-    color: '#fff',
-    fontSize: 18,
-  },
   btn: {
     height: 60,
     borderRadius: 20,

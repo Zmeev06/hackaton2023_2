@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  View,
-  StatusBar,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import {View, StatusBar, StyleSheet} from 'react-native';
 import ReactNativeModal from 'react-native-modal';
 import {getDeviceSizes} from '../../utils/getDeviceSizes';
 import {font} from '../../variables/font';

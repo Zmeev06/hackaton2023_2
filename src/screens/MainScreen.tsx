@@ -20,7 +20,6 @@ import {globalStyles} from '../globalStyles';
 import {font} from '../variables/font';
 
 import Logo from '../assets/img/logo.png';
-import HeaderMainScreen from '../components/HeaderMainScreen';
 import {colors} from '../variables/colors';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -38,12 +37,22 @@ const MainScreen: React.FC<MainScreenProps> = ({}) => {
       colorGradient: [colors.green_dark, colors.green_light],
       onPress: () => navigation.navigate('MathGame'),
     },
-    {img: game2, title: 'Алфавит', colorGradient: ['#9CADEB', '#FCD9E6'], onPress: () => navigation.navigate('AlphabetMain')},
+    {
+      img: game2,
+      title: 'Алфавит',
+      colorGradient: ['#9CADEB', '#FCD9E6'],
+      onPress: () => navigation.navigate('AlphabetMain'),
+    },
   ];
 
   const subjects2 = [
     {img: game5, title: 'Английский', colorGradient: ['#dce485', '#F8FFA9']},
-    {img: game6, title: 'Логика', colorGradient: ['#AB9CE4', '#DFD7FF']},
+    {
+      img: game6,
+      title: 'Логика',
+      colorGradient: ['#AB9CE4', '#DFD7FF'],
+      onPress: () => navigation.navigate('PuzzlesScreen'),
+    },
   ];
 
   console.log([...Array(21)].map((_, index) => index));
@@ -96,6 +105,7 @@ const MainScreen: React.FC<MainScreenProps> = ({}) => {
             </View>
             {subjects2.map((item, index) => (
               <SubjectHorizontal
+                onPress={item.onPress}
                 img={item.img}
                 title={item.title}
                 colorGradient={item.colorGradient}
