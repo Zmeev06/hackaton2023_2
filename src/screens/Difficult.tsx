@@ -19,7 +19,7 @@ const Difficult: React.FC = ({route}) => {
   return (
     <SafeAreaView style={globalStyles.safeAreaView}>
       <Header title="Сложность" color={colors.green_dark} />
-      <View style={[globalStyles.container, {marginTop: 20}]}>
+      <View style={[globalStyles.container, {marginTop: 20, flex: 1}]}>
         <TouchableOpacity
           onPress={() =>
             //@ts-ignore
@@ -51,17 +51,17 @@ const Difficult: React.FC = ({route}) => {
 
 const styles = StyleSheet.create({
   btn: {
-    height: 60,
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#ffff',
     marginBottom: 10,
+    flex: 1,
   },
   text: {
     fontFamily: font.black,
     color: '#fff',
-    fontSize: 18,
+    fontSize: 30,
   },
 });
 

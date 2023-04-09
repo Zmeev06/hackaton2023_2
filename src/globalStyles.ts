@@ -14,6 +14,7 @@ export const globalStyles = StyleSheet.create({
     fontFamily: font.black,
     fontSize: 30,
     paddingBottom: 30,
+    textAlign: 'center',
   },
   modalBtn: {
     height: 60,
